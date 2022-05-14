@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
+import "../App.css";
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -17,53 +18,78 @@ class Tweets extends Component {
 
 		const formData = new FormData(e.target),
 			formDataObj = Object.fromEntries(formData.entries());
+		console.log(formDataObj.topic);
 
-		this.setState({
-			heading: `AI Tweet suggestion about: ${formDataObj.topic}`,
-			response: `The Response from OpenAI API will be shown here`,
+		// OpenAI call
+
+		const configuration = new Configuration({
+			apiKey: "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",
 		});
+		const openai = new OpenAIApi(configuration);
+
+		openai
+			.createCompletion("text-davinci-002", {
+				prompt: `Generate a tweet about: ${formDataObj.topic}`,
+				temperature: 0.7,
+				max_tokens: 256,
+				top_p: 1,
+				frequency_penalty: 0,
+				presence_penalty: 0,
+			})
+			.then((response) => {
+				this.setState({
+					heading: `AI Tweet suggestion about: ${formDataObj.topic}`,
+					response: `${response.data.choices[0].text}`,
+				});
+			});
 	};
 	render() {
 		return (
-			<div>
-				<h1>🐦 Generate Tweets 🐦</h1>
-				<h2>
+			<div className="main">
+				<h1 className="title">🐦 Generate Tweets 🐦</h1>
+				<h3 classNmae="subtitle">
 					{" "}
-					Enter a topic and have some AI generate a tweet for you!
-				</h2>
+					Enter a topic and have AI generate a tweet for you!
+				</h3>
 
 				<Form onSubmit={this.onFormSubmit}>
 					<Form.Group className="mb-3">
-						<Form.Label>
+						<Form.Label className="prompt">
 							{" "}
 							What would you like to tweet about?
 						</Form.Label>
 						<Form.Control
 							type="text"
-							name="tweettopic"
+							name="topic"
 							placeholder="Enter a Topic"
 						></Form.Control>
-						<Form.text className="text-muted">
-							Enter a topic about whatever you would like.
-						</Form.text>
+						{/* <Form.Text className="text-muted">
+								Enter a topic about whatever you would like.
+							</Form.Text> */}
 					</Form.Group>
-
-					<Button variant="primary" size="lg" type="submit">
-						🤖 Get AI Suggestions
-					</Button>
+					<div className="left">
+						<Button
+							variant="primary"
+							size="lg"
+							type="submit"
+							className="button"
+						>
+							🤖 Get AI Suggestions
+						</Button>
+					</div>
 				</Form>
 
 				<Card>
 					<Card.Body>
 						<Card.Title>
 							{" "}
-							<h1> {this.state.heading} </h1>
+							<h1 className="textleft"> {this.state.heading} </h1>
 						</Card.Title>
 						<hr />
 						<br />
-						<Card.text>
-							<h4>{this.state.response}</h4>
-						</Card.text>
+						<Card.Text>
+							<h4 className="textleft">{this.state.response}</h4>
+						</Card.Text>
 					</Card.Body>
 				</Card>
 			</div>

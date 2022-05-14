@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+.main {
+  margin: 0px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.title {
+  font-size: 60px;
+}
+
+.subtitle {
+  font-size: 30px;
+}
+
+.prompt {
+  display: flex;
+  text-align: left;
+  font-size: 20px;
+}
+
+.button {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.left {
+  display: flex;
+}
+
+.textleft {
+  text-align: left;
+}
