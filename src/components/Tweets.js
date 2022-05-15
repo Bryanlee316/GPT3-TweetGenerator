@@ -23,7 +23,7 @@ class Tweets extends Component {
 		// OpenAI call
 
 		const configuration = new Configuration({
-			apiKey: "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",
+			apiKey: "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",
 		});
 		const openai = new OpenAIApi(configuration);
 
