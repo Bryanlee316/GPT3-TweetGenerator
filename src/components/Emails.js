@@ -22,13 +22,13 @@ class Emails extends Component {
 		// OpenAI call
 
 		const configuration = new Configuration({
-			apiKey: "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",
+			apiKey: "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",
 		});
 		const openai = new OpenAIApi(configuration);
 
 		openai
 			.createCompletion("text-davinci-002", {
-				prompt: `Generate a tweet about: ${formDataObj.topic}`,
+				prompt: `Generate a professional email about: ${formDataObj.topic}`,
 				temperature: 0.7,
 				max_tokens: 256,
 				top_p: 1,
@@ -37,7 +37,7 @@ class Emails extends Component {
 			})
 			.then((response) => {
 				this.setState({
-					heading: `AI Tweet suggestion about: ${formDataObj.topic}`,
+					heading: `AI Email suggestion about: ${formDataObj.topic}`,
 					response: `${response.data.choices[0].text}`,
 				});
 			});

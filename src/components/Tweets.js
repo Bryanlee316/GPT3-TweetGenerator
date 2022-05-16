@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import "../App.css";
+import profile from "../profilepic.jpg";
+import bottom from "../Bottom.png";
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -87,9 +89,101 @@ class Tweets extends Component {
 						</Card.Title>
 						<hr />
 						<br />
-						<Card.Text>
+						{/* <Card.Text>
 							<h4 className="textleft">{this.state.response}</h4>
-						</Card.Text>
+						</Card.Text> */}
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "center",
+							}}
+						>
+							<div
+								style={{
+									display: "flex",
+									width: "500px",
+									justifyContent: "space-between",
+									border: "0.5px lightgrey solid",
+									padding: "30px",
+									flexDirection: "column",
+								}}
+							>
+								<div>
+									<div
+										style={{
+											display: "flex",
+											justifyContent: "",
+											flexDirection: "row",
+											justifyContent: "space-between",
+										}}
+									>
+										<div
+											style={{
+												display: "flex",
+												flexDirection: "row",
+											}}
+										>
+											<img
+												src={profile}
+												style={{
+													width: "60px",
+													height: "60px",
+													borderRadius: "30px",
+													marginRight: "20px",
+												}}
+											/>
+											<div>
+												<h6
+													style={{
+														textAlign: "left",
+														paddingTop: "5px",
+														fontWeight: "bold",
+													}}
+												>
+													Name
+												</h6>
+												<h6
+													style={{
+														marginTop: "-5px",
+														textAlign: "left",
+													}}
+												>
+													{" "}
+													@username
+												</h6>
+											</div>
+										</div>
+										<div
+											style={{
+												display: "flex",
+												alignItems: "flex-start",
+												marginTop: "-10px",
+											}}
+										>
+											{" "}
+											<h2> ... </h2>
+										</div>
+									</div>
+								</div>
+								<div
+									style={{
+										marginTop: "20px",
+										marginLeft: "10px",
+									}}
+								>
+									<h4 className="textleft">
+										{this.state.response}
+									</h4>
+								</div>
+								<img
+									src={bottom}
+									style={{
+										width: "100%",
+										marginLeft: "2px",
+									}}
+								/>
+							</div>
+						</div>
 					</Card.Body>
 				</Card>
 			</div>
